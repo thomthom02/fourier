@@ -5,7 +5,7 @@ var mouse = {x: 0, y: 0, down: false};
 var drawings = [];
 var currentDrawing = -1;
 
-var fourier_iterations = 8;
+var fourier_iterations = 10;
 var fourierx_coefficients = [];
 var fouriery_coefficients = [];
 
@@ -105,9 +105,9 @@ function calc_fourier_coefficients(f){
     return coefficients;
 }
 
-function calc_fourier(coefficients, x){
+function calc_fourier(coefficients, x, iterations=fourier_iterations){
     var f = coefficients[0];
-    for(n in coefficients[1]){
+    for(n = 0; n < fourier_iterations; n++){
         f += coefficients[1][n]*Math.cos(n*x);
         f += coefficients[2][n]*Math.sin(n*x);
     }
@@ -157,6 +157,14 @@ function draw_graphs(drawBoard, c_x, x_ctx, c_y, y_ctx){
     x_ctx.stroke();
     y_ctx.stroke();
     
+}
+
+function draw_circles(frame, drawBoard, db_ctx){
+    for(i = 0; i < fourier_iterations; i++){
+        var pos_x = calc_fourier(fourierx_coefficients, frame*Math.PI/30, i);
+        var pos_y = calc_fourier(fouriery_coefficients, frame*Math.PI/30, i);
+        db_ctx.arc(pos_x, pos_y, f)
+    }
 }
 
 function draw_fourier(drawBoard, db_ctx, fourierx, fourierx_ctx, fouriery, fouriery_ctx){
@@ -225,6 +233,7 @@ function draw() {
         
         if(fourierx_coefficients.length > 0){
             draw_fourier(drawBoard, db_ctx, fourierx, fourierx_ctx, fouriery, fouriery_ctx);
+            //draw_circles(frame, drawBoard, db_ctx);
         }
         
     }
