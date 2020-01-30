@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Fourier</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="stylesheet.css">
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <div id="menu">
+            <div class="menu_button" onclick="button_clicked(this)">
+                <div class=bar1></div>
+                <div class=bar2_></div>
+                <div class=bar2></div>
+                <div class=bar3></div>
+            </div>
+        </div>
+        <div id="graphs">
+                <div id="graph_x" class="graphs">
+                    <div class="titles">X(t)    F(x, t):</div>
+                    <canvas id="draw_x" class="graph"></canvas>
+                    <canvas id="fourier_x" class="graph"></canvas>
+                </div>
+                <div id="graph_y" class="graphs">
+                    <canvas id="draw_y" class="graph"></canvas>
+                    <canvas id="fourier_y" class="graph"></canvas>
+                </div>
+            </div>
+        <canvas id="drawboard"></canvas>
+    </body>
+</html>
